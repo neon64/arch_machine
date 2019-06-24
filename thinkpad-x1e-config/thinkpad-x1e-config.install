@@ -1,0 +1,57 @@
+BLUE="\e[34m"
+MAGENTA="\e[35m"
+RED="\e[31m"
+YELLOW="\e[33m"
+GREEN="\e[32m"
+BOLD="\e[1m"
+RESET_FMT="\e[0m"
+
+## arg 1:  the new package version
+#pre_install() {
+    # do something here
+#}
+
+enable_services() {
+    echo -e "${BLUE}Enabling tlp.service, tlp-sleep.service${RESET_FMT}"
+    systemctl enable --now tlp tlp-sleep
+    echo -e "${BLUE}Enabling intel-undervolt.service${RESET_FMT}"
+    systemctl enable --now intel-undervolt
+    echo -e "${BLUE}Enabling ntp time synchronisation${RESET_FMT}"
+    timedatectl set-ntp true
+}
+
+disable_services() {
+    echo -e "${RED}Disabling tlp.service, tlp-sleep.service${RESET_FMT}"
+    systemctl disable --now tlp tlp-sleep
+    echo -e "${RED}Disabling intel-undervolt.service${RESET_FMT}"
+    systemctl disable --now intel-undervolt
+    echo -e "${RED}Disabling ntp time synchronisation${RESET_FMT}"
+    timedatectl set-ntp false
+}
+
+## arg 1:  the new package version
+post_install() {
+    enable_services
+}
+
+## arg 1:  the new package version
+## arg 2:  the old package version
+#pre_upgrade() {
+    # do something here
+#}
+
+## arg 1:  the new package version
+## arg 2:  the old package version
+post_upgrade() {
+    enable_services
+}
+
+## arg 1:  the old package version
+# pre_remove() {
+
+# }
+
+## arg 1:  the old package version
+post_remove() {
+    disable_services
+}
