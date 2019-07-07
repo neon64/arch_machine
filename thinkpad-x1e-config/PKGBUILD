@@ -1,6 +1,6 @@
 pkgname=thinkpad-x1e-config
 pkgver=0.1
-pkgrel=2
+pkgrel=3
 
 pkgdesc='personal system configuration for Lenovo Thinkpad X1 Extreme'
 arch=('any')
@@ -16,6 +16,9 @@ depends=(
     'bbswitch'
     'netctl' # internet access
     'pulseaudio' # audio setup
+    'uefi-shell-git' # UEFI shell v2 - in case anything goes wrong
+    'systemd' # for systemd-boot
+    'systemd-boot-pacman-hook' # auto update systemd boot
     'base-config'
 )
 
@@ -36,10 +39,18 @@ package() {
     install -Dm0644 "../etc/modprobe.d/blacklist-nouveau.conf" "$pkgdir/etc/modprobe.d/blacklist-nouveau.conf"
     install -Dm0644 "../etc/modules-load.d/bbswitch.conf" "$pkgdir/etc/modules-load.d/bbswitch.conf"
     install -Dm0644 "../etc/sysctl.d/99-swap.conf" "$pkgdir/etc/sysctl.d/99-swap.conf"
+    install -Dm0644 "../etc/systemd/system/windows.mount" "$pkgdir/etc/systemd/system/windows.mount"
+    install -Dm0644 "../etc/systemd/system/windows.automount" "$pkgdir/etc/systemd/system/windows.automount"
     install -Dm0644 "../etc/netctl/enp0s3" "$pkgdir/etc/netctl/enp0s3"
     install -Dm0644 "../etc/hosts" "$pkgdir/etc/hosts"
     install -Dm0644 etc-issue "$pkgdir/etc/issue"
     install -Dm0644 "../etc/hostname" "$pkgdir/etc/hostname"
     install -Dm0644 "../etc/mkinitcpio.conf" "$pkgdir/etc/mkinitcpio.conf"
+    install -Dm0644 "../boot/loader/loader.conf" "$pkgdir/boot/loader/loader.conf"
+    install -Dm0644 "../boot/loader/entries/arch.conf" "$pkgdir/boot/loader/entries/arch.conf"
+    install -Dm0644 "../boot/loader/entries/uefi-shell-v2-x86_64.conf" "$pkgdir/boot/loader/entries/uefi-shell-v2-x86_64.conf"
+    install -Dm0755 "../usr/bin/reboot_chooser" "$pkgdir/usr/bin/reboot_chooser"
+    install -Dm0755 "../usr/bin/reboot_to_windows" "$pkgdir/usr/bin/reboot_to_windows"
+    install -Dm0755 "../usr/bin/reboot_to_arch" "$pkgdir/usr/bin/reboot_to_arch"
 }
-md5sums=('56a57c1211c7a4f27e3020b82de486fd')
+md5sums=('658b3b5b3d2c371eafd6f9c6e40d62d0')

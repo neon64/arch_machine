@@ -1,0 +1,31 @@
+pkgname=live-usb-config
+pkgver=0.1
+pkgrel=1
+
+pkgdesc='personal system configuration for a live usb stick'
+arch=('any')
+url='https://github.com/neon64/arch_machine'
+license=('MIT')
+install="live-usb-config.install"
+depends=(
+    'tlp' # power management
+    'ethtool' # disable wake-on-LAN
+    'x86_energy_perf_policy' # set power vs. performance policy
+    'netctl' # internet access
+    'pulseaudio' # audio setup
+    'base-config'
+    'grub' # grub for extra compatibility?
+    'grub-theme-slaze-git' # awesome grub theme
+)
+
+# https://github.com/Earnestly/pkgbuilds/blob/master/system-config/PKGBUILD
+
+package() {
+    install -Dm0644 "../etc/default/grub" "$pkgdir/etc/default/grub"
+    install -Dm0644 "../etc/modprobe.d/blacklist-nouveau.conf" "$pkgdir/etc/modprobe.d/blacklist-nouveau.conf"
+    install -Dm0644 "../etc/netctl/enp0s3" "$pkgdir/etc/netctl/enp0s3"
+    install -Dm0644 "../etc/systemd/journald.conf.d/usbstick.conf" "$pkgdir/etc/systemd/journald.conf.d/usbstick.conf"
+    install -Dm0644 "../etc/hosts" "$pkgdir/etc/hosts"
+    install -Dm0644 "../etc/hostname" "$pkgdir/etc/hostname"
+    install -Dm0644 "../etc/mkinitcpio.conf" "$pkgdir/etc/mkinitcpio.conf"
+}

@@ -1,0 +1,12 @@
+[Unit]
+Description=Windows C:\ Drive
+ConditionVirtualization=False
+
+[Mount]
+What=/dev/disk/by-uuid/ACA23D8DA23D5CD0
+Where=/windows
+Type=ntfs-3g
+Options=rw,relatime
+
+[Install]
+WantedBy=multi-user.target

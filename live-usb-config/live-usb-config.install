@@ -1,0 +1,50 @@
+BLUE="\e[34m"
+MAGENTA="\e[35m"
+RED="\e[31m"
+YELLOW="\e[33m"
+GREEN="\e[32m"
+BOLD="\e[1m"
+RESET_FMT="\e[0m"
+
+## arg 1:  the new package version
+#pre_install() {
+    # do something here
+#}
+
+remove_cruft() {
+    echo -e "${RED}Warning: removing extra cruft from Arch install - might break things!${RESET_FMT}"
+    rm -rf /usr/share/man
+    rm -rf /usr/share/doc
+    rm -rf /usr/share/gtk-doc
+    rm -rf /usr/lib/firmware/netronome
+    rm -rf /usr/lib/firmware/liquidio
+    rm -rf /usr/lib/firmware/qed
+    rm -rf /usr/lib/python3.7/test
+    rm -rf /usr/share/ibus/dicts
+}
+
+## arg 1:  the new package version
+post_install() {
+    remove_cruft
+}
+
+## arg 1:  the new package version
+## arg 2:  the old package version
+#pre_upgrade() {
+    # do something here
+#}
+
+## arg 1:  the new package version
+## arg 2:  the old package version
+post_upgrade() {
+    remove_cruft
+}
+
+## arg 1:  the old package version
+# pre_remove() {
+
+# }
+
+## arg 1:  the old package version
+# post_remove() {
+# }

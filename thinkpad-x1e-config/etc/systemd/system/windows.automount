@@ -1,0 +1,8 @@
+[Unit]
+Description=Automount Windows C:\ Drive
+
+[Automount]
+Where=/windows
+
+[Install]
+WantedBy=multi-user.target

@@ -18,6 +18,9 @@ enable_services() {
     systemctl enable --now intel-undervolt
     echo -e "${BLUE}Enabling ntp time synchronisation${RESET_FMT}"
     timedatectl set-ntp true
+    echo -e "${BLUE}Automounting Windows C:\ directory${RESET_FMT}"
+    systemctl disable --now windows.mount
+    systemctl enable --now windows.automount
 }
 
 disable_services() {
@@ -27,10 +30,15 @@ disable_services() {
     systemctl disable --now intel-undervolt
     echo -e "${RED}Disabling ntp time synchronisation${RESET_FMT}"
     timedatectl set-ntp false
+    echo -e "${BLUE}Disabling automounting Windows C:\ directory${RESET_FMT}"
+    systemctl disable --now windows.mount
+    systemctl disable --now windows.automount
 }
 
 ## arg 1:  the new package version
 post_install() {
+    echo -e "${BLUE}Installing systemd-boot${RESET_FMT}"
+    bootctl install --path=/boot
     enable_services
 }
 

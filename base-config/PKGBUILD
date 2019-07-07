@@ -1,5 +1,5 @@
 pkgname=base-config
-pkgver=0.1
+pkgver=0.2
 pkgrel=1
 
 pkgdesc='base system configuration'
@@ -7,6 +7,7 @@ arch=('any')
 url='https://github.com/neon64/arch_machine'
 license=('MIT')
 source=()
+install="base-config.install"
 depends=(
     'polkit' # required for shutdown without sudo, avoiding errors in systemctl etc...
     'netctl' # internet access
@@ -24,4 +25,5 @@ package() {
     install -Dm0644 "../etc/locale.conf" "$pkgdir/etc/locale.conf"
     install -Dm0644 "../etc/locale.gen" "$pkgdir/etc/locale.gen"
     install -Dm0644 "../etc/vconsole.conf" "$pkgdir/etc/vconsole.conf"
+    install -Dm0755 "../usr/bin/manage_bluetooth" "$pkgdir/usr/bin/manage_bluetooth"
 }

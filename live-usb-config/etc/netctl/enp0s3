@@ -1,0 +1,3 @@
+Interface=enp0s3
+Connection=ethernet
+IP=dhcp
