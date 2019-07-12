@@ -1,6 +1,6 @@
 # Arch Linux personal system configuration
 
-My dotfiles have been gradually becoming too system-specific, including config files and utilities that really only make sense for a specific machine.
+My [dotfiles](https://github.com/neon64/dotfiles) have been gradually becoming too system-specific, including config files and utilities that really only make sense for a specific machine.
 
 Thus this repo will remain seperate from my dotfiles, and deal with all nitty-gritty system-wide configuration. This includes:
 
@@ -10,6 +10,8 @@ Thus this repo will remain seperate from my dotfiles, and deal with all nitty-gr
 - driver selection
 - bootloaders
 - pacman config
+
+At the moment, this is all managed through custom PKGBUILDs.
 
 ## Why share?
 
@@ -25,4 +27,9 @@ I took heavy inspiration from Arch packages like [this](https://github.com/Earne
 
 ### Thinkpad X1 Extreme
 
-- my everyday laptop
+- dual booting Windows and Arch
+
+### Live USB
+
+- an experiment to fit most of my system setup in a really small USB stick, with space left over for personal documents
+- try at your own risk, I think I might have killed off my old 4GB usb
