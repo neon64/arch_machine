@@ -25,7 +25,9 @@ depends=(
 # https://github.com/Earnestly/pkgbuilds/blob/master/system-config/PKGBUILD
 
 build() {
-    env TERM="linux" bash ~/.config/colors/base16-shell/scripts/base16-material-darker.sh > etc-issue
+    theme=$(cat ~/.config/colors/current-theme)
+    echo "Building /etc/issue using theme $theme"
+    env TERM="linux" bash ~/.config/colors/base16-shell/scripts/$theme.sh > etc-issue
     echo -e "" >> etc-issue
     cat etc-issue-template >> etc-issue
 }
