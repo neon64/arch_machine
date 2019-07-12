@@ -2,7 +2,7 @@
 
 My [dotfiles](https://github.com/neon64/dotfiles) have been gradually becoming too system-specific, including config files and utilities that really only make sense for a specific machine.
 
-Thus this repo will remain seperate from my dotfiles, and deal with all nitty-gritty system-wide configuration. This includes:
+Thus this repo will remain seperate from my dotfiles, and deal with all nitty-gritty system configuration. This includes:
 
 - locales, timezones, etc...
 - wifi and bluetooth
