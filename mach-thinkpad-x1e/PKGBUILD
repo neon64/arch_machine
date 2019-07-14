@@ -1,25 +1,26 @@
-pkgname=thinkpad-x1e-config
-pkgver=0.1
-pkgrel=3
+pkgname=mach-thinkpad-x1e
+pkgver=0.1.2
+pkgrel=5
 
 pkgdesc='personal system configuration for Lenovo Thinkpad X1 Extreme'
 arch=('any')
 url='https://github.com/neon64/arch_machine'
 license=('MIT')
 source=("etc-issue-template")
-install="thinkpad-x1e-config.install"
+install="mach-thinkpad-x1e.install"
 depends=(
+    'mach-base' # base system
+    'mach-disable-nvidia-gpu' # disable Nvidia GPU on boot
+    # 'mach-nvidia-gpu-switching' # allow switching to it with nvidia-xrun
     'tlp' # power management
     'ethtool' # disable wake-on-LAN
     'acpi_call' # ThinkPad battery functions
     'x86_energy_perf_policy' # set power vs. performance policy
-    'bbswitch'
     'netctl' # internet access
     'pulseaudio' # audio setup
     'uefi-shell-git' # UEFI shell v2 - in case anything goes wrong
     'systemd' # for systemd-boot
     'systemd-boot-pacman-hook' # auto update systemd boot
-    'base-config'
 )
 
 # https://github.com/Earnestly/pkgbuilds/blob/master/system-config/PKGBUILD
@@ -35,11 +36,8 @@ build() {
 package() {
     install -Dm0644 "../etc/default/tlp" "$pkgdir/etc/default/tlp"
     install -Dm0644 "../etc/intel-undervolt.conf" "$pkgdir/etc/intel-undervolt.conf"
-    install -Dm0644 "../etc/modprobe.d/bbswitch.conf" "$pkgdir/etc/modprobe.d/bbswitch.conf"
     install -Dm0644 "../etc/modprobe.d/no-beep.conf" "$pkgdir/etc/modprobe.d/no-beep.conf"
     install -Dm0644 "../etc/modprobe.d/no-camera.conf" "$pkgdir/etc/modprobe.d/no-camera.conf"
-    install -Dm0644 "../etc/modprobe.d/blacklist-nouveau.conf" "$pkgdir/etc/modprobe.d/blacklist-nouveau.conf"
-    install -Dm0644 "../etc/modules-load.d/bbswitch.conf" "$pkgdir/etc/modules-load.d/bbswitch.conf"
     install -Dm0644 "../etc/sysctl.d/99-swap.conf" "$pkgdir/etc/sysctl.d/99-swap.conf"
     install -Dm0644 "../etc/systemd/system/windows.mount" "$pkgdir/etc/systemd/system/windows.mount"
     install -Dm0644 "../etc/systemd/system/windows.automount" "$pkgdir/etc/systemd/system/windows.automount"

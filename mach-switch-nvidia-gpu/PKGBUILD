@@ -1,0 +1,16 @@
+pkgname=mach-switch-nvidia-gpu
+pkgver=0.1.0
+pkgrel=2
+pkgdesc='enables GPU switching with Nvidia-xrun'
+arch=('any')
+url='https://github.com/neon64/arch_machine'
+license=('MIT')
+depends=(
+    'mach-disable-nvidia-gpu' # for power switching
+    'nvidia' # drivers
+    'nvidia-xrun' # the switching utility
+)
+
+package() {
+    echo "done"
+}

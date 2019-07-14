@@ -1,4 +1,4 @@
-pkgname=base-config
+pkgname=mach-base
 pkgver=0.2
 pkgrel=1
 
@@ -7,7 +7,7 @@ arch=('any')
 url='https://github.com/neon64/arch_machine'
 license=('MIT')
 source=()
-install="base-config.install"
+install="mach-base.install"
 depends=(
     'polkit' # required for shutdown without sudo, avoiding errors in systemctl etc...
     'netctl' # internet access
@@ -15,8 +15,6 @@ depends=(
     'libsecret' # credential management
     'terminus-font'
 )
-
-# https://github.com/Earnestly/pkgbuilds/blob/master/system-config/PKGBUILD
 
 package() {
     install -Dm0600 "../etc/sudoers.d/wheel" "$pkgdir"/etc/sudoers.d/wheel

@@ -20,7 +20,6 @@ remove_cruft() {
     rm -rf /usr/lib/firmware/liquidio
     rm -rf /usr/lib/firmware/qed
     rm -rf /usr/lib/python3.7/test
-    rm -rf /usr/share/ibus/dicts
 }
 
 ## arg 1:  the new package version

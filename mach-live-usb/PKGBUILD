@@ -1,4 +1,4 @@
-pkgname=live-usb-config
+pkgname=mach-live-usb
 pkgver=0.1
 pkgrel=1
 
@@ -6,19 +6,17 @@ pkgdesc='personal system configuration for a live usb stick'
 arch=('any')
 url='https://github.com/neon64/arch_machine'
 license=('MIT')
-install="live-usb-config.install"
+install="mach-live-usb.install"
 depends=(
     'tlp' # power management
     'ethtool' # disable wake-on-LAN
     'x86_energy_perf_policy' # set power vs. performance policy
     'netctl' # internet access
     'pulseaudio' # audio setup
-    'base-config'
+    'mach-base'
     'grub' # grub for extra compatibility?
     'grub-theme-slaze-git' # awesome grub theme
 )
-
-# https://github.com/Earnestly/pkgbuilds/blob/master/system-config/PKGBUILD
 
 package() {
     install -Dm0644 "../etc/default/grub" "$pkgdir/etc/default/grub"

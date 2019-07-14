@@ -1,0 +1,17 @@
+pkgname=mach-disable-nvidia-gpu
+pkgver=0.1.0
+pkgrel=1
+
+pkgdesc='disables a Nvidia GPU on boot with bbswitch'
+arch=('any')
+url='https://github.com/neon64/arch_machine'
+license=('MIT')
+depends=(
+    'bbswitch'
+)
+
+package() {
+    install -Dm0644 "../etc/modprobe.d/bbswitch.conf" "$pkgdir/etc/modprobe.d/bbswitch.conf"
+    install -Dm0644 "../etc/modprobe.d/blacklist-nouveau.conf" "$pkgdir/etc/modprobe.d/blacklist-nouveau.conf"
+    install -Dm0644 "../etc/modules-load.d/bbswitch.conf" "$pkgdir/etc/modules-load.d/bbswitch.conf"
+}

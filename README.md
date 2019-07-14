@@ -2,7 +2,7 @@
 
 My [dotfiles](https://github.com/neon64/dotfiles) have been gradually becoming too system-specific, including config files and utilities that really only make sense for a specific machine.
 
-Thus this repo will remain seperate from my dotfiles, and deal with all nitty-gritty system configuration. This includes:
+Thus this repo will remain seperate from my dotfiles, and deal with all the nitty-gritty system configuration. This includes:
 
 - locales, timezones, etc...
 - wifi and bluetooth
@@ -33,3 +33,14 @@ I took heavy inspiration from Arch packages like [this](https://github.com/Earne
 
 - an experiment to fit most of my system setup in a really small USB stick, with space left over for personal documents
 - try at your own risk, I think I might have killed off my old 4GB usb
+
+## Experiments
+
+### Disable Nvidia GPU
+
+- necessary config to disable Nvidia GPU on boot with bbswitch
+
+### Switch Nvidia GPU
+
+- switch to the Nvidia GPU using nvidia-xrun
+- works with `mach-disable-nvidia-gpu` as well
