@@ -1,6 +1,6 @@
 pkgname=mach-base
-pkgver=0.2
-pkgrel=1
+pkgver=0.3
+pkgrel=2
 
 pkgdesc='base system configuration'
 arch=('any')
@@ -24,4 +24,5 @@ package() {
     install -Dm0644 "../etc/locale.gen" "$pkgdir/etc/locale.gen"
     install -Dm0644 "../etc/vconsole.conf" "$pkgdir/etc/vconsole.conf"
     install -Dm0755 "../usr/bin/manage_bluetooth" "$pkgdir/usr/bin/manage_bluetooth"
+    install -Dm0644 "../etc/pam.d/login" "$pkgdir/etc/pam.d/login"
 }

@@ -1,0 +1,62 @@
+BLUE="\e[34m"
+MAGENTA="\e[35m"
+RED="\e[31m"
+YELLOW="\e[33m"
+GREEN="\e[32m"
+BOLD="\e[1m"
+RESET_FMT="\e[0m"
+
+## arg 1:  the new package version
+#pre_install() {
+    # do something here
+#}
+
+enable_services() {
+    echo -e "${BLUE}Enabling tlp.service, tlp-sleep.service${RESET_FMT}"
+    systemctl enable --now tlp tlp-sleep
+    echo -e "${BLUE}Disabling lvm2-monitor.service${RESET_FMT}"
+    systemctl disable lvm2-monitor.service
+    echo -e "${BLUE}Enabling CUPS printing socket${RESET_FMT}"
+    systemctl disable org.cups.cupsd.service
+    systemctl enable org.cups.cupsd.socket
+}
+
+disable_services() {
+    echo -e "${RED}Disabling tlp.service, tlp-sleep.service${RESET_FMT}"
+    systemctl disable --now tlp tlp-sleep
+    echo -e "${BLUE}Disabling CUPS printing socket${RESET_FMT}"
+    systemctl disable org.cups.cupsd.service
+    systemctl disable org.cups.cupsd.socket
+}
+
+## arg 1:  the new package version
+post_install() {
+    echo -e "${BLUE}Installing refind${RESET_FMT}"
+    refind-install
+    enable_services
+    cp "/boot/EFI/refind/refind-theme-regular/icons/512-192/os_arch.png" "/boot/vmlinuz-linux.png"
+}
+
+## arg 1:  the new package version
+## arg 2:  the old package version
+#pre_upgrade() {
+    # do something here
+#}
+
+## arg 1:  the new package version
+## arg 2:  the old package version
+post_upgrade() {
+    echo -e "${BLUE}Installing refind${RESET_FMT}"
+    refind-install
+    enable_services
+}
+
+## arg 1:  the old package version
+# pre_remove() {
+
+# }
+
+## arg 1:  the old package version
+post_remove() {
+    disable_services
+}

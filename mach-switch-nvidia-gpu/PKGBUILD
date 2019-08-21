@@ -12,5 +12,5 @@ depends=(
 )
 
 package() {
-    echo "done"
+    install -Dm0644 "../etc/modprobe.d/blacklist-nvidia.conf" "$pkgdir/etc/modprobe.d/blacklist-nvidia.conf"
 }

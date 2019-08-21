@@ -1,0 +1,37 @@
+pkgname=mach-mbp-71
+pkgver=0.1.0
+pkgrel=1
+
+pkgdesc='personal system configuration for Apple MacBook Pro 7,1 (2010)'
+arch=('any')
+url='https://github.com/neon64/arch_machine'
+license=('MIT')
+source=("etc-issue-template")
+install="mach-mbp-71.install"
+depends=(
+    'mach-base' # base system
+    'mach-slow-bootsplash' # nice bootsplash
+    'tlp' # power management
+    'refind-efi' # bootloader
+    'refind-theme-regular-git' # refind theme
+)
+
+build() {
+    theme=$(cat ~/.config/colors/current-theme)
+    echo "Building /etc/issue using theme $theme"
+    env TERM="linux" bash ~/.config/colors/base16-shell/scripts/$theme.sh > etc-issue
+    echo -e "" >> etc-issue
+    cat etc-issue-template >> etc-issue
+}
+
+package() {
+    install -Dm0644 "../etc/default/tlp" "$pkgdir/etc/default/tlp"
+    install -Dm0644 "../etc/modprobe.d/b43-firmware.conf" "$pkgdir/etc/modprobe.d/b43-firmware.conf"
+    install -Dm0644 "../etc/hosts" "$pkgdir/etc/hosts"
+    install -Dm0644 etc-issue "$pkgdir/etc/issue"
+    install -Dm0644 "../etc/hostname" "$pkgdir/etc/hostname"
+    install -Dm0644 "../etc/mkinitcpio.conf" "$pkgdir/etc/mkinitcpio.conf"
+    install -Dm0644 "../boot/EFI/refind/refind.conf" "$pkgdir/boot/EFI/refind/refind.conf"
+    install -Dm0644 "../boot/refind_linux.conf" "$pkgdir/boot/refind_linux.conf"
+}
+md5sums=('26f0ac6a3fd40b2f74274b8ab1d093b1')

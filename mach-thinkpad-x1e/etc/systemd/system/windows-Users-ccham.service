@@ -1,0 +1,11 @@
+[Unit]
+Description=Windows User Directory
+ConditionVirtualization=oracle
+
+[Service]
+ExecStart=mount -t vboxsf winuserdir /windows/Users/ccham
+ExecStop=umount /windows/Users/ccham
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

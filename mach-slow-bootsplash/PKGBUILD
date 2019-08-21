@@ -1,0 +1,15 @@
+pkgname=mach-slow-bootsplash
+pkgver=0.1.0
+pkgrel=1
+pkgdesc='a Debian-inspired bootsplash for a relatively slow-booting computer'
+arch=('any')
+url='https://github.com/neon64/arch_machine'
+license=('MIT')
+depends=(
+    'plymouth' # graphical bootsplash
+    'plymouth-theme-minimal-dark-git' # nice, Debian-like theme
+)
+
+package() {
+    install -Dm0644 "../etc/plymouth/plymouthd.conf" "$pkgdir/etc/plymouth/plymouthd.conf"
+}
