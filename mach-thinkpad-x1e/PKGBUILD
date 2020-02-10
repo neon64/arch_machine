@@ -1,6 +1,6 @@
 pkgname=mach-thinkpad-x1e
-pkgver=0.1.2
-pkgrel=5
+pkgver=0.1.3
+pkgrel=2
 
 pkgdesc='personal system configuration for Lenovo Thinkpad X1 Extreme'
 arch=('any')
@@ -35,7 +35,6 @@ package() {
     install -Dm0644 "../etc/default/tlp" "$pkgdir/etc/default/tlp"
     install -Dm0644 "../etc/intel-undervolt.conf" "$pkgdir/etc/intel-undervolt.conf"
     install -Dm0644 "../etc/modprobe.d/no-beep.conf" "$pkgdir/etc/modprobe.d/no-beep.conf"
-    install -Dm0644 "../etc/modprobe.d/no-camera.conf" "$pkgdir/etc/modprobe.d/no-camera.conf"
     install -Dm0644 "../etc/sysctl.d/99-swap.conf" "$pkgdir/etc/sysctl.d/99-swap.conf"
     install -Dm0644 "../etc/systemd/system/windows.mount" "$pkgdir/etc/systemd/system/windows.mount"
     install -Dm0644 "../etc/systemd/system/windows.automount" "$pkgdir/etc/systemd/system/windows.automount"
@@ -45,13 +44,13 @@ package() {
     install -Dm0644 etc-issue "$pkgdir/etc/issue"
     install -Dm0644 "../etc/hostname" "$pkgdir/etc/hostname"
     install -Dm0644 "../etc/mkinitcpio.conf" "$pkgdir/etc/mkinitcpio.conf"
+    install -Dm0644 "../etc/mkinitcpio_nvidia.conf" "$pkgdir/etc/mkinitcpio_nvidia.conf"
     install -Dm0644 "../boot/loader/loader.conf" "$pkgdir/boot/loader/loader.conf"
     install -Dm0644 "../boot/loader/entries/arch.conf" "$pkgdir/boot/loader/entries/arch.conf"
+    install -Dm0644 "../boot/loader/entries/arch_nvidia.conf" "$pkgdir/boot/loader/entries/arch_nvidia.conf"
     install -Dm0644 "../boot/loader/entries/windows.conf" "$pkgdir/boot/loader/entries/windows.conf"
     install -Dm0644 "../boot/loader/entries/uefi-shell-v2-x86_64.conf" "$pkgdir/boot/loader/entries/uefi-shell-v2-x86_64.conf"
     install -Dm0755 "../usr/bin/reboot_chooser" "$pkgdir/usr/bin/reboot_chooser"
-    install -Dm0755 "../usr/bin/reboot_to_windows" "$pkgdir/usr/bin/reboot_to_windows"
-    install -Dm0755 "../usr/bin/reboot_to_arch" "$pkgdir/usr/bin/reboot_to_arch"
     install -Dm0755 "../usr/bin/share_wifi_to_ethernet" "$pkgdir/usr/bin/share_wifi_to_ethernet"
 }
 md5sums=('658b3b5b3d2c371eafd6f9c6e40d62d0')

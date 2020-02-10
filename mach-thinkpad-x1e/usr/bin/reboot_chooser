@@ -2,17 +2,25 @@
 
 options="Reboot normally
 Reboot to Arch Linux
+Reboot to Arch Linux (hybrid graphics)
+Reboot to Arch Linux (discrete graphics)
 Reboot to Windows"
-selection=$(echo "$options" | fzf --reverse --height=5 --color=16 )
+selection=$(echo "$options" | fzf --reverse --height=7 --color=16 )
 case "$selection" in
     'Reboot normally')
         /bin/reboot
         ;;
     'Reboot to Arch Linux')
-        reboot_to_arch
+        sudo efibootmgr --bootnext 0001 && systemctl reboot --boot-loader-entry=arch
+        ;;
+    'Reboot to Arch Linux (hybrid graphics)')
+        sudo sh -c 'echo "SwitchableGfx" > /sys/bus/wmi/drivers/thinkpad-wmi/51F5230E-9677-46CD-A1CF-C0B23EE34DB7/GraphicsDevice' &&sudo efibootmgr --bootnext 0001 && systemctl reboot --boot-loader-entry=arch
+        ;;
+    'Reboot to Arch Linux (discrete graphics)')
+         sudo sh -c 'echo "DiscreteGfx" > /sys/bus/wmi/drivers/thinkpad-wmi/51F5230E-9677-46CD-A1CF-C0B23EE34DB7/GraphicsDevice' && sudo efibootmgr --bootnext 0001 && systemctl reboot --boot-loader-entry=arch_nvidia
         ;;
     'Reboot to Windows')
-        reboot_to_windows
+        sudo efibootmgr --bootnext 0000 && /bin/reboot
         ;;
     *)
         echo "invalid option selected"

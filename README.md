@@ -28,6 +28,9 @@ I took heavy inspiration from Arch packages like [this](https://github.com/Earne
 ### Thinkpad X1 Extreme
 
 - dual booting Windows and Arch
+- switchable between hybrid and discrete only graphics (at boot time).
+    - I found that the BIOS setting needs to be set to "Discrete" for Gnome Wayland to use the Nvidia card (I think when both are loaded it assumes that the Intel one is 'primary')
+    - trying to use thinkpad_wmi
 
 ### Live USB
 
@@ -35,6 +38,10 @@ I took heavy inspiration from Arch packages like [this](https://github.com/Earne
 - try at your own risk, I think I might have killed off my old 4GB usb
 
 ## Experiments
+
+### Auto-unlock keyring
+
+needs the /etc/pam.d/login override from `mach-base`... Then also need to set the login keyring as the default keyring.
 
 ### Disable Nvidia GPU
 
