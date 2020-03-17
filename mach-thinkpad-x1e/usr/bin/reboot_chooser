@@ -1,26 +1,35 @@
 #!/bin/bash
 
 options="Reboot normally
-Reboot to Arch Linux
-Reboot to Arch Linux (hybrid graphics)
-Reboot to Arch Linux (discrete graphics)
-Reboot to Windows"
+Reboot to Arch Linux (hybrid graphics) from now-on
+Reboot to Arch Linux (discrete graphics) from now-on
+Reboot to Windows from now-on"
 selection=$(echo "$options" | fzf --reverse --height=7 --color=16 )
 case "$selection" in
     'Reboot normally')
         /bin/reboot
         ;;
-    'Reboot to Arch Linux')
-        sudo efibootmgr --bootnext 0001 && systemctl reboot --boot-loader-entry=arch
+    'Reboot to Arch Linux (hybrid graphics) from now-on')
+        currentDevice=$(head -1 /sys/bus/wmi/drivers/thinkpad-wmi/51F5230E-9677-46CD-A1CF-C0B23EE34DB7/GraphicsDevice)
+        if [ "$currentDevice" != "SwitchableGfx" ]; then
+            sudo sh -c 'echo "SwitchableGfx" > /sys/bus/wmi/drivers/thinkpad-wmi/51F5230E-9677-46CD-A1CF-C0B23EE34DB7/GraphicsDevice'
+        fi
+        sudo efibootmgr -q -o 0001,0000,0010,0011,0012,0013,0014,0018,0019,001A,001B,001C,001D,001E,001F,0020,0021,0026 && bootctl set-default arch && /bin/reboot
         ;;
-    'Reboot to Arch Linux (hybrid graphics)')
-        sudo sh -c 'echo "SwitchableGfx" > /sys/bus/wmi/drivers/thinkpad-wmi/51F5230E-9677-46CD-A1CF-C0B23EE34DB7/GraphicsDevice' &&sudo efibootmgr --bootnext 0001 && systemctl reboot --boot-loader-entry=arch
+    'Reboot to Arch Linux (discrete graphics) from now-on')
+        currentDevice=$(head -1 /sys/bus/wmi/drivers/thinkpad-wmi/51F5230E-9677-46CD-A1CF-C0B23EE34DB7/GraphicsDevice)
+        if [ "$currentDevice" != "DiscreteGfx" ]; then
+            sudo sh -c 'echo "DiscreteGfx" > /sys/bus/wmi/drivers/thinkpad-wmi/51F5230E-9677-46CD-A1CF-C0B23EE34DB7/GraphicsDevice'
+        fi
+        sudo efibootmgr -q -o 0001,0000,0010,0011,0012,0013,0014,0018,0019,001A,001B,001C,001D,001E,001F,0020,0021,0026 && bootctl set-default arch_nvidia && /bin/reboot
         ;;
-    'Reboot to Arch Linux (discrete graphics)')
-         sudo sh -c 'echo "DiscreteGfx" > /sys/bus/wmi/drivers/thinkpad-wmi/51F5230E-9677-46CD-A1CF-C0B23EE34DB7/GraphicsDevice' && sudo efibootmgr --bootnext 0001 && systemctl reboot --boot-loader-entry=arch_nvidia
-        ;;
-    'Reboot to Windows')
-        sudo efibootmgr --bootnext 0000 && /bin/reboot
+    'Reboot to Windows from now-on')
+        # ensure we're back to hybrid graphics
+        currentDevice=$(head -1 /sys/bus/wmi/drivers/thinkpad-wmi/51F5230E-9677-46CD-A1CF-C0B23EE34DB7/GraphicsDevice)
+        if [ "$currentDevice" != "SwitchableGfx" ]; then
+            sudo sh -c 'echo "SwitchableGfx" > /sys/bus/wmi/drivers/thinkpad-wmi/51F5230E-9677-46CD-A1CF-C0B23EE34DB7/GraphicsDevice'
+        fi
+        sudo efibootmgr -q -o 0000,0001,0010,0011,0012,0013,0014,0018,0019,001A,001B,001C,001D,001E,001F,0020,0021,0026 && bootctl set-default arch && /bin/reboot
         ;;
     *)
         echo "invalid option selected"
