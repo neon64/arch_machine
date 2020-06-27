@@ -1,6 +1,6 @@
 pkgname=mach-base
-pkgver=0.3
-pkgrel=2
+pkgver=0.4
+pkgrel=1
 
 pkgdesc='base system configuration'
 arch=('any')
@@ -23,6 +23,10 @@ package() {
     install -Dm0644 "../etc/locale.conf" "$pkgdir/etc/locale.conf"
     install -Dm0644 "../etc/locale.gen" "$pkgdir/etc/locale.gen"
     install -Dm0644 "../etc/vconsole.conf" "$pkgdir/etc/vconsole.conf"
+    install -Dm0644 "../etc/systemd/journald.conf.d/fw-tty12.conf" "$pkgdir/etc/systemd/journald.conf.d/fw-tty12.conf"
+    install -Dm0644 "../etc/systemd/journald.conf.d/max-size.conf" "$pkgdir/etc/systemd/journald.conf.d/max-size.conf"
     install -Dm0755 "../usr/bin/manage_bluetooth" "$pkgdir/usr/bin/manage_bluetooth"
     install -Dm0644 "../etc/pam.d/login" "$pkgdir/etc/pam.d/login"
 }
+
+

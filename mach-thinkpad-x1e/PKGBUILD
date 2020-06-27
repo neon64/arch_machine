@@ -1,6 +1,6 @@
 pkgname=mach-thinkpad-x1e
-pkgver=0.1.6
-pkgrel=1
+pkgver=0.1.7
+pkgrel=2
 
 pkgdesc='personal system configuration for Lenovo Thinkpad X1 Extreme'
 arch=('any')
@@ -53,4 +53,4 @@ package() {
     install -Dm0755 "../usr/bin/reboot_chooser" "$pkgdir/usr/bin/reboot_chooser"
     install -Dm0755 "../usr/bin/share_wifi_to_ethernet" "$pkgdir/usr/bin/share_wifi_to_ethernet"
 }
-md5sums=('97a8334acb94bf8ab938dfa4c7549e24')
+md5sums=('d5f0a1c72b090fce5810a42f78922268')
