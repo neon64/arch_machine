@@ -33,3 +33,23 @@ $ sudo modprobe bbswitch load_state=0 unload_state=1
 ```shell
 $ reg add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /d 1 /t REG_DWORD /f
 ```
+
+## The predicament
+
+I really like using Sway / Wayland. However I also own a recent Nvidia GPU which has terribly compatibility with nouveau. To make matters worse, external monitor outputs are hardwired to the Nvidia GPU.
+
+Sway won't implement EGLStreams, and Nvidia's drivers won't use GBM. Stalemate.
+
+However, I don't really care about using the Nvidia GPU for performance reasons (I'm not gaming on Linux), rather I just want to be able to send output to an external monitor.
+
+`intel-virtual-output` seems to be a solution for X11.
+
+Could I write something similar that takes a headless output from Swaywm (`swaymsg create_output`?)
+
+### The current solution
+
+Turns out - if you start Nouveau drivers **after** startup, you can run Sway successfully and use external monitors!!
+
+- Only one bug found so far: mouse events don't work in Xwayland on the monitor.
+
+Ideally: would be able to disable the nouveau drivers *while* Sway is running

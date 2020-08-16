@@ -1,0 +1,9 @@
+[Unit]
+Description=Automount UEFI partition
+ConditionVirtualization=False
+
+[Automount]
+Where=/boot
+
+[Install]
+WantedBy=multi-user.target

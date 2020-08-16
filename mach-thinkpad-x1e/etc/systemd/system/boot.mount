@@ -1,0 +1,12 @@
+[Unit]
+Description=UEFI boot partition
+ConditionVirtualization=False
+
+[Mount]
+What=/dev/disk/by-uuid/B41E-2863
+Where=/boot
+Type=vfat
+Options=rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,utf8,errors=remount-ro
+
+[Install]
+WantedBy=multi-user.target

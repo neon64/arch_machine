@@ -1,5 +1,5 @@
 pkgname=mach-base
-pkgver=0.4
+pkgver=0.5
 pkgrel=1
 
 pkgdesc='base system configuration'
@@ -10,7 +10,6 @@ source=()
 install="mach-base.install"
 depends=(
     'polkit' # required for shutdown without sudo, avoiding errors in systemctl etc...
-    'netctl' # internet access
     'pulseaudio' 'pulseaudio-alsa' # pulseaudio support
     'libsecret' # credential management
     'terminus-font'

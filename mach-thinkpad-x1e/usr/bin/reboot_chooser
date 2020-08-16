@@ -3,7 +3,8 @@
 options="Reboot normally
 Reboot to Arch Linux (hybrid graphics) from now-on
 Reboot to Arch Linux (discrete graphics) from now-on
-Reboot to Windows from now-on"
+Reboot to Windows from now-on
+Hibernate and reboot to Windows"
 selection=$(echo "$options" | fzf --reverse --height=7 --color=16 )
 case "$selection" in
     'Reboot normally')
@@ -14,14 +15,14 @@ case "$selection" in
         if [ "$currentDevice" != "SwitchableGfx" ]; then
             sudo sh -c 'echo "SwitchableGfx" > /sys/bus/wmi/drivers/thinkpad-wmi/51F5230E-9677-46CD-A1CF-C0B23EE34DB7/GraphicsDevice'
         fi
-        sudo efibootmgr -q -o 0001,0000,0010,0011,0012,0013,0014,0018,0019,001A,001B,001C,001D,001E,001F,0020,0021,0026 && sudo bootctl set-default arch.conf && /bin/reboot
+        sudo efibootmgr -q -o 0002,0000,0010,0011,0012,0013,0014,0018,0019,001A,001B,001C,001D,001E,001F,0020,0021,0026 && sudo bootctl set-default arch.conf && /bin/reboot
         ;;
     'Reboot to Arch Linux (discrete graphics) from now-on')
         currentDevice=$(head -1 /sys/bus/wmi/drivers/thinkpad-wmi/51F5230E-9677-46CD-A1CF-C0B23EE34DB7/GraphicsDevice)
         if [ "$currentDevice" != "DiscreteGfx" ]; then
             sudo sh -c 'echo "DiscreteGfx" > /sys/bus/wmi/drivers/thinkpad-wmi/51F5230E-9677-46CD-A1CF-C0B23EE34DB7/GraphicsDevice'
         fi
-        sudo efibootmgr -q -o 0001,0000,0010,0011,0012,0013,0014,0018,0019,001A,001B,001C,001D,001E,001F,0020,0021,0026 && sudo bootctl set-default arch_nvidia.conf && /bin/reboot
+        sudo efibootmgr -q -o 0002,0000,0010,0011,0012,0013,0014,0018,0019,001A,001B,001C,001D,001E,001F,0020,0021,0026 && sudo bootctl set-default arch_nvidia.conf && /bin/reboot
         ;;
     'Reboot to Windows from now-on')
         # ensure we're back to hybrid graphics
@@ -29,7 +30,21 @@ case "$selection" in
         if [ "$currentDevice" != "SwitchableGfx" ]; then
             sudo sh -c 'echo "SwitchableGfx" > /sys/bus/wmi/drivers/thinkpad-wmi/51F5230E-9677-46CD-A1CF-C0B23EE34DB7/GraphicsDevice'
         fi
-        sudo efibootmgr -q -o 0000,0001,0010,0011,0012,0013,0014,0018,0019,001A,001B,001C,001D,001E,001F,0020,0021,0026 && sudo bootctl set-default arch.conf && /bin/reboot
+        sudo efibootmgr -q -o 0000,0002,0001,0010,0011,0012,0013,0014,0018,0019,001A,001B,001C,001D,001E,001F,0020,0021,0026 && sudo bootctl set-default arch.conf && /bin/reboot
+        ;;
+    'Hibernate and reboot to Windows')
+        # ensure we're back to hybrid graphics
+        currentDevice=$(head -1 /sys/bus/wmi/drivers/thinkpad-wmi/51F5230E-9677-46CD-A1CF-C0B23EE34DB7/GraphicsDevice)
+        if [ "$currentDevice" != "SwitchableGfx" ]; then
+            sudo sh -c 'echo "SwitchableGfx" > /sys/bus/wmi/drivers/thinkpad-wmi/51F5230E-9677-46CD-A1CF-C0B23EE34DB7/GraphicsDevice'
+        fi
+        sudo efibootmgr -q -o 0000,0002,0001,0010,0011,0012,0013,0014,0018,0019,001A,001B,001C,001D,001E,001F,0020,0021,0026 && sudo bootctl set-default arch.conf && sudo systemctl stop windows.mount && sudo umount /boot
+        read -p "Are you sure you want to hibernate? " -n 1 -r
+        echo    # (optional) move to a new line
+        if [[ $REPLY =~ ^[Yy]$ ]]
+        then
+            systemctl hibernate
+        fi
         ;;
     *)
         echo "invalid option selected"
