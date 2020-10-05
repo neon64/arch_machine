@@ -1,5 +1,5 @@
 pkgname=mach-thinkpad-x1e
-pkgver=0.1.9
+pkgver=0.1.10
 pkgrel=1
 
 pkgdesc='personal system configuration for Lenovo Thinkpad X1 Extreme'
@@ -50,14 +50,9 @@ package() {
     install -Dm0644 "../etc/X11/xorg.conf.d/30-touchpad.conf" "$pkgdir/etc/X11/xorg.conf.d/30-touchpad.conf"
     install -Dm0644 "../etc/X11/nvidia-xorg.conf.d/30-touchpad.conf" "$pkgdir/etc/X11/nvidia-xorg.conf.d/30-touchpad.conf"
     install -Dm0644 "../etc/mkinitcpio.conf" "$pkgdir/etc/mkinitcpio.conf"
-    install -Dm0644 "../etc/mkinitcpio_nvidia.conf" "$pkgdir/etc/mkinitcpio_nvidia.conf"
     install -Dm0644 "../etc/iwd/main.conf" "$pkgdir/etc/iwd/main.conf"
     install -Dm0644 "../etc/plymouth/plymouthd.conf" "$pkgdir/etc/plymouth/plymouthd.conf"
-    install -Dm0644 "../etc/pacman.d/hooks/nvidia.hook" "$pkgdir/etc/pacman.d/hooks/nvidia.hook"
     install -Dm0644 "../boot/loader/loader.conf" "$pkgdir/boot/loader/loader.conf"
-    # install -Dm0644 "../boot/loader/entries/arch.conf" "$pkgdir/boot/loader/entries/arch.conf"
-    # install -Dm0644 "../boot/loader/entries/arch_nvidia.conf" "$pkgdir/boot/loader/entries/arch_nvidia.conf"
-    # install -Dm0644 "../boot/loader/entries/windows.conf" "$pkgdir/boot/loader/entries/windows.conf"
     install -Dm0644 "../boot/loader/entries/uefi-shell-v2-x86_64.conf" "$pkgdir/boot/loader/entries/uefi-shell-v2-x86_64.conf"
     install -Dm0755 "../usr/bin/reboot_chooser" "$pkgdir/usr/bin/reboot_chooser"
     install -Dm0755 "../usr/bin/share_wifi_to_ethernet" "$pkgdir/usr/bin/share_wifi_to_ethernet"

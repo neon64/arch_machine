@@ -13,7 +13,7 @@ RESET_FMT="\e[0m"
 
 enable_services() {
     echo -e "${BLUE}Enabling tlp.service, tlp-sleep.service${RESET_FMT}"
-    systemctl enable --now tlp tlp-sleep
+    systemctl enable --now tlp
     echo -e "${BLUE}Enabling intel-undervolt.service${RESET_FMT}"
     systemctl enable --now intel-undervolt
     echo -e "${BLUE}Disabling ntp time synchronisation${RESET_FMT}"
@@ -28,7 +28,7 @@ enable_services() {
 
 disable_services() {
     echo -e "${RED}Disabling tlp.service, tlp-sleep.service${RESET_FMT}"
-    systemctl disable --now tlp tlp-sleep
+    systemctl disable --now tlp
     echo -e "${RED}Disabling intel-undervolt.service${RESET_FMT}"
     systemctl disable --now intel-undervolt
     echo -e "${RED}Disabling ntp time synchronisation${RESET_FMT}"
