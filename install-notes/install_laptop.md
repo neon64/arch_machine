@@ -50,6 +50,6 @@ Could I write something similar that takes a headless output from Swaywm (`swaym
 
 Turns out - if you start Nouveau drivers **after** startup, you can run Sway successfully and use external monitors!!
 
-- Only one bug found so far: mouse events don't work in Xwayland on the monitor.
+- Only one bug found so far: mouse events don't work in Xwayland on the monitor. **Solution:** need to position external monitor so that coordinates are not negative (see https://github.com/swaywm/wlroots/issues/958)
 
-Ideally: would be able to disable the nouveau drivers *while* Sway is running
+Ideally would be able to disable the nouveau drivers *while* Sway is running. This is sort of tracked here: https://github.com/swaywm/wlroots/issues/1278.
