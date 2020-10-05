@@ -1,5 +1,5 @@
 pkgname=mach-base
-pkgver=0.5
+pkgver=0.6
 pkgrel=1
 
 pkgdesc='base system configuration'
@@ -24,7 +24,6 @@ package() {
     install -Dm0644 "../etc/vconsole.conf" "$pkgdir/etc/vconsole.conf"
     install -Dm0644 "../etc/systemd/journald.conf.d/fw-tty12.conf" "$pkgdir/etc/systemd/journald.conf.d/fw-tty12.conf"
     install -Dm0644 "../etc/systemd/journald.conf.d/max-size.conf" "$pkgdir/etc/systemd/journald.conf.d/max-size.conf"
-    install -Dm0755 "../usr/bin/manage_bluetooth" "$pkgdir/usr/bin/manage_bluetooth"
     install -Dm0644 "../etc/pam.d/login" "$pkgdir/etc/pam.d/login"
 }
 
