@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Gmail
+Comment=Loaded inside Firefox
+Exec=launch-firefox-gmail
+Icon=gmail
+Terminal=false

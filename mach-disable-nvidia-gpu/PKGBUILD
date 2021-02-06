@@ -1,3 +1,4 @@
+# Maintainer: Chris Chamberlain <chris@chamberlain.id.au>
 pkgname=mach-disable-nvidia-gpu
 pkgver=0.1.0
 pkgrel=1
