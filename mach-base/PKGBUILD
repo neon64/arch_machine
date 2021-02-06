@@ -1,5 +1,5 @@
 pkgname=mach-base
-pkgver=0.6
+pkgver=0.7
 pkgrel=1
 
 pkgdesc='base system configuration'
@@ -25,6 +25,10 @@ package() {
     install -Dm0644 "../etc/systemd/journald.conf.d/fw-tty12.conf" "$pkgdir/etc/systemd/journald.conf.d/fw-tty12.conf"
     install -Dm0644 "../etc/systemd/journald.conf.d/max-size.conf" "$pkgdir/etc/systemd/journald.conf.d/max-size.conf"
     install -Dm0644 "../etc/pam.d/login" "$pkgdir/etc/pam.d/login"
+    install -Dm0644 "../etc/greetd/config.toml" "$pkgdir/etc/greetd/config.toml"
+    install -Dm0644 "../etc/greetd/environments" "$pkgdir/etc/greetd/environments"
+    install -Dm0755 "../etc/greetd/run-sway.sh" "$pkgdir/etc/greetd/run-sway.sh"
+    install -Dm0644 "../etc/greetd/sway-config" "$pkgdir/etc/greetd/sway-config"
 }
 
 

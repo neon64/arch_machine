@@ -1,0 +1,9 @@
+/etc/greetd/run-sway.sh
+/etc/greetd/run-gnome.sh
+/etc/greetd/run-plasma-wayland.sh
+startx /usr/bin/startplasma-x11
+fish
+reboot
+poweroff
+reboot_to_arch
+reboot_to_windows

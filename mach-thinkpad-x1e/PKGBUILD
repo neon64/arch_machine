@@ -1,5 +1,5 @@
 pkgname=mach-thinkpad-x1e
-pkgver=0.1.10
+pkgver=0.1.11
 pkgrel=1
 
 pkgdesc='personal system configuration for Lenovo Thinkpad X1 Extreme'
@@ -10,8 +10,6 @@ source=("etc-issue-template")
 install="mach-thinkpad-x1e.install"
 depends=(
     'mach-base' # base system
-    'mach-disable-nvidia-gpu' # disable Nvidia GPU on boot
-    #'mach-switch-nvidia-gpu' # allow switching to it with nvidia-xrun
     'tlp' # power management
     'ethtool' # disable wake-on-LAN through tlp
     'acpi_call' # ThinkPad battery functions
@@ -21,6 +19,7 @@ depends=(
     'plymouth-theme-minimal-dark-bgrt-git' # bootsplash theme
     'systemd' # for systemd-boot
     'systemd-boot-pacman-hook' # auto update systemd boot
+    'libva-intel-driver' # VA-API hardware video acceleration
 )
 
 # https://github.com/Earnestly/pkgbuilds/blob/master/system-config/PKGBUILD
@@ -43,7 +42,6 @@ package() {
     install -Dm0644 "../etc/systemd/system/boot.mount" "$pkgdir/etc/systemd/system/boot.mount"
     install -Dm0644 "../etc/systemd/system/boot.automount" "$pkgdir/etc/systemd/system/boot.automount"
     install -Dm0644 "../etc/systemd/system/windows-Users-ccham.service" "$pkgdir/etc/systemd/system/windows-Users-ccham.service"
-    install -Dm0644 "../etc/netctl/enp0s3" "$pkgdir/etc/netctl/enp0s3"
     install -Dm0644 "../etc/hosts" "$pkgdir/etc/hosts"
     install -Dm0644 etc-issue "$pkgdir/etc/issue"
     install -Dm0644 "../etc/hostname" "$pkgdir/etc/hostname"
@@ -54,7 +52,6 @@ package() {
     install -Dm0644 "../etc/plymouth/plymouthd.conf" "$pkgdir/etc/plymouth/plymouthd.conf"
     install -Dm0644 "../boot/loader/loader.conf" "$pkgdir/boot/loader/loader.conf"
     install -Dm0644 "../boot/loader/entries/uefi-shell-v2-x86_64.conf" "$pkgdir/boot/loader/entries/uefi-shell-v2-x86_64.conf"
-    install -Dm0755 "../usr/bin/reboot_chooser" "$pkgdir/usr/bin/reboot_chooser"
     install -Dm0755 "../usr/bin/share_wifi_to_ethernet" "$pkgdir/usr/bin/share_wifi_to_ethernet"
 }
 md5sums=('d5f0a1c72b090fce5810a42f78922268')
