@@ -1,6 +1,6 @@
 # Maintainer: Chris Chamberlain <chris@chamberlain.id.au>
 pkgname=gmail-desktop-entry
-pkgver=0.1
+pkgver=0.2
 pkgrel=1
 
 pkgdesc='.desktop file to open Gmail in Firefox'
@@ -8,7 +8,7 @@ arch=('any')
 url='https://github.com/neon64/arch_machine'
 license=('MIT')
 source=('firefox-gmail.desktop' 'gmail.svg' 'launch-firefox-gmail')
-depends=()
+depends=(jq sway firefox)
 
 package() {
     install -Dm0644 "firefox-gmail.desktop" "$pkgdir/usr/share/applications/firefox-gmail.desktop"

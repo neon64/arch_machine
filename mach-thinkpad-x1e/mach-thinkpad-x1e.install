@@ -16,14 +16,12 @@ enable_services() {
     systemctl enable --now tlp
     echo -e "${BLUE}Enabling intel-undervolt.service${RESET_FMT}"
     systemctl enable --now intel-undervolt
-    echo -e "${BLUE}Disabling ntp time synchronisation${RESET_FMT}"
-    timedatectl set-ntp false
     echo -e "${BLUE}Automounting Windows C:\ directory${RESET_FMT}"
     systemctl disable --now windows.mount
     systemctl enable --now windows.automount
     echo -e "${BLUE}Enabling CUPS printing socket${RESET_FMT}"
-    systemctl disable org.cups.cupsd.service
-    systemctl enable org.cups.cupsd.socket
+    systemctl disable cups.service
+    systemctl enable cups.socket
 }
 
 disable_services() {
@@ -31,14 +29,12 @@ disable_services() {
     systemctl disable --now tlp
     echo -e "${RED}Disabling intel-undervolt.service${RESET_FMT}"
     systemctl disable --now intel-undervolt
-    echo -e "${RED}Disabling ntp time synchronisation${RESET_FMT}"
-    timedatectl set-ntp false
     echo -e "${BLUE}Disabling automounting Windows C:\ directory${RESET_FMT}"
     systemctl disable --now windows.mount
     systemctl disable --now windows.automount
     echo -e "${BLUE}Disabling CUPS printing socket${RESET_FMT}"
-    systemctl disable org.cups.cupsd.service
-    systemctl disable org.cups.cupsd.socket
+    systemctl disable cups.service
+    systemctl disable cups.socket
 }
 
 ## arg 1:  the new package version
