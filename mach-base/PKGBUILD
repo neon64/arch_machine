@@ -1,5 +1,5 @@
 pkgname=mach-base
-pkgver=0.7
+pkgver=0.8
 pkgrel=1
 
 pkgdesc='base system configuration'
@@ -28,6 +28,8 @@ package() {
     install -Dm0644 "../etc/greetd/config.toml" "$pkgdir/etc/greetd/config.toml"
     install -Dm0644 "../etc/greetd/environments" "$pkgdir/etc/greetd/environments"
     install -Dm0755 "../etc/greetd/run-sway.sh" "$pkgdir/etc/greetd/run-sway.sh"
+    install -Dm0755 "../etc/greetd/run-gnome.sh" "$pkgdir/etc/greetd/run-gnome.sh"
+    install -Dm0755 "../etc/greetd/run-plasma-wayland.sh" "$pkgdir/etc/greetd/run-plasma-wayland.sh"
     install -Dm0644 "../etc/greetd/sway-config" "$pkgdir/etc/greetd/sway-config"
 }
 
