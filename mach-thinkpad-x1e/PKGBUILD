@@ -1,6 +1,6 @@
 # Maintainer: Chris Chamberlain <chris@chamberlain.id.au>
 pkgname=mach-thinkpad-x1e
-pkgver=0.1.12
+pkgver=0.2.0
 pkgrel=1
 
 pkgdesc='personal system configuration for Lenovo Thinkpad X1 Extreme'
@@ -20,6 +20,7 @@ depends=(
     'systemd' # for systemd-boot
     'systemd-boot-pacman-hook' # auto update systemd boot
     'libva-intel-driver' # VA-API hardware video acceleration
+    'acpid' # to handle lid toggling
 )
 
 # https://github.com/Earnestly/pkgbuilds/blob/master/system-config/PKGBUILD
@@ -43,6 +44,8 @@ package() {
     install -Dm0644 "../etc/systemd/system/boot.automount" "$pkgdir/etc/systemd/system/boot.automount"
     install -Dm0644 "../etc/systemd/system/windows-Users-ccham.service" "$pkgdir/etc/systemd/system/windows-Users-ccham.service"
     install -Dm0644 "../etc/hosts" "$pkgdir/etc/hosts"
+    install -Dm0755 "../etc/acpi/actions/lid.sh" "$pkgdir/etc/acpi/actions/lid.sh"
+    install -Dm0644 "../etc/acpi/events/lid" "$pkgdir/etc/acpi/events/lid"
     install -Dm0644 etc-issue "$pkgdir/etc/issue"
     install -Dm0644 "../etc/hostname" "$pkgdir/etc/hostname"
     install -Dm0644 "../etc/X11/xorg.conf.d/30-touchpad.conf" "$pkgdir/etc/X11/xorg.conf.d/30-touchpad.conf"

@@ -12,7 +12,7 @@ RESET_FMT="\e[0m"
 #}
 
 enable_services() {
-    echo -e "${BLUE}Enabling tlp.service, tlp-sleep.service${RESET_FMT}"
+    echo -e "${BLUE}Enabling tlp.service${RESET_FMT}"
     systemctl enable --now tlp
     echo -e "${BLUE}Enabling intel-undervolt.service${RESET_FMT}"
     systemctl enable --now intel-undervolt
@@ -22,10 +22,12 @@ enable_services() {
     echo -e "${BLUE}Enabling CUPS printing socket${RESET_FMT}"
     systemctl disable cups.service
     systemctl enable cups.socket
+    echo -e "${BLUE}Enabling acpid${RESET_FMT}"
+    systemctl enable --now acpid
 }
 
 disable_services() {
-    echo -e "${RED}Disabling tlp.service, tlp-sleep.service${RESET_FMT}"
+    echo -e "${RED}Disabling tlp.service${RESET_FMT}"
     systemctl disable --now tlp
     echo -e "${RED}Disabling intel-undervolt.service${RESET_FMT}"
     systemctl disable --now intel-undervolt
