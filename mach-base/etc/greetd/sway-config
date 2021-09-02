@@ -1,5 +1,5 @@
 # `-l` activates layer-shell mode. Notice that `swaymsg exit` will run after gtkgreet.
-exec "gtkgreet -l; swaymsg exit"
+exec "env GTK_THEME=Arc gtkgreet -l -s /etc/greetd/gtkgreet-style.css; swaymsg exit"
 
 # Generic Keyboard
 input * {

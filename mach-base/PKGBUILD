@@ -1,6 +1,6 @@
 # Maintainer: Chris Chamberlain <chris@chamberlain.id.au>
 pkgname=mach-base
-pkgver=0.8
+pkgver=0.10
 pkgrel=1
 
 pkgdesc='base system configuration'
@@ -22,7 +22,7 @@ package() {
     chmod 750 "$pkgdir/etc/sudoers.d"
     install -Dm0644 "../etc/locale.conf" "$pkgdir/etc/locale.conf"
     install -Dm0644 "../etc/locale.gen" "$pkgdir/etc/locale.gen"
-    install -Dm0644 "../etc/vconsole.conf" "$pkgdir/etc/vconsole.conf"
+    install -Dm0644 "../etc/security/faillock.conf" "$pkgdir/etc/security/faillock.conf"
     install -Dm0644 "../etc/systemd/journald.conf.d/fw-tty12.conf" "$pkgdir/etc/systemd/journald.conf.d/fw-tty12.conf"
     install -Dm0644 "../etc/systemd/journald.conf.d/max-size.conf" "$pkgdir/etc/systemd/journald.conf.d/max-size.conf"
     install -Dm0644 "../etc/pam.d/login" "$pkgdir/etc/pam.d/login"
@@ -30,6 +30,8 @@ package() {
     install -Dm0644 "../etc/greetd/environments" "$pkgdir/etc/greetd/environments"
     install -Dm0755 "../etc/greetd/run-sway.sh" "$pkgdir/etc/greetd/run-sway.sh"
     install -Dm0755 "../etc/greetd/run-gnome.sh" "$pkgdir/etc/greetd/run-gnome.sh"
+    install -Dm0755 "../etc/greetd/gtkgreet-style.css" "$pkgdir/etc/greetd/gtkgreet-style.css"
+    install -Dm0755 "../etc/greetd/wallpaper.jpg" "$pkgdir/etc/greetd/wallpaper.jpg"
     install -Dm0755 "../etc/greetd/run-plasma-wayland.sh" "$pkgdir/etc/greetd/run-plasma-wayland.sh"
     install -Dm0644 "../etc/greetd/sway-config" "$pkgdir/etc/greetd/sway-config"
 }
