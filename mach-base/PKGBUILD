@@ -1,6 +1,6 @@
 # Maintainer: Chris Chamberlain <chris@chamberlain.id.au>
 pkgname=mach-base
-pkgver=0.10
+pkgver=0.11
 pkgrel=1
 
 pkgdesc='base system configuration'
@@ -22,6 +22,7 @@ package() {
     chmod 750 "$pkgdir/etc/sudoers.d"
     install -Dm0644 "../etc/locale.conf" "$pkgdir/etc/locale.conf"
     install -Dm0644 "../etc/locale.gen" "$pkgdir/etc/locale.gen"
+    install -Dm0644 "../etc/nsswitch.conf" "$pkgdir/etc/nsswitch.conf"
     install -Dm0644 "../etc/security/faillock.conf" "$pkgdir/etc/security/faillock.conf"
     install -Dm0644 "../etc/systemd/journald.conf.d/fw-tty12.conf" "$pkgdir/etc/systemd/journald.conf.d/fw-tty12.conf"
     install -Dm0644 "../etc/systemd/journald.conf.d/max-size.conf" "$pkgdir/etc/systemd/journald.conf.d/max-size.conf"
@@ -35,6 +36,7 @@ package() {
     install -Dm0755 "../etc/greetd/wallpaper.jpg" "$pkgdir/etc/greetd/wallpaper.jpg"
     install -Dm0755 "../etc/greetd/run-plasma-wayland.sh" "$pkgdir/etc/greetd/run-plasma-wayland.sh"
     install -Dm0644 "../etc/greetd/sway-config" "$pkgdir/etc/greetd/sway-config"
+    install -Dm0644 "../etc/sysctl.d/80-docker-rootless.conf" "$pkgdir/etc/sysctl.d/80-docker-rootless.conf"
 }
 
 

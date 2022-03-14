@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Sway (custom config)
+Comment=An i3-compatible Wayland compositor
+Exec=env _JAVA_AWT_WM_NONREPARENTING=1 MOZ_ENABLE_WAYLAND=1 systemd-cat -t sway sway
+Type=Application

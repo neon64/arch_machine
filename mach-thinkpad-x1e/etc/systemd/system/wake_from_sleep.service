@@ -1,0 +1,10 @@
+[Unit]
+Description=Turn on work lights if at home
+After=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
+
+[Service]
+ExecStart=/home/chris/.config/bin/activate_work_lights
+User=chris
+
+[Install]
+WantedBy=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target

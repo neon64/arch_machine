@@ -1,6 +1,6 @@
 # Maintainer: Chris Chamberlain <chris@chamberlain.id.au>
 pkgname=mach-thinkpad-x1e
-pkgver=0.2.0
+pkgver=0.3.0
 pkgrel=1
 
 pkgdesc='personal system configuration for Lenovo Thinkpad X1 Extreme'
@@ -15,8 +15,8 @@ depends=(
     'ethtool' # disable wake-on-LAN through tlp
     'acpi_call' # ThinkPad battery functions
     'x86_energy_perf_policy' # set power vs. performance policy
-    'plymouth-git' # bootsplash
-    'plymouth-theme-minimal-dark-bgrt-git' # bootsplash theme
+    'plymouth' # bootsplash
+    # 'plymouth-theme-minimal-dark-bgrt-git' bootsplash theme
     'systemd' # for systemd-boot
     'systemd-boot-pacman-hook' # auto update systemd boot
     'libva-intel-driver' # VA-API hardware video acceleration
@@ -40,6 +40,7 @@ package() {
     install -Dm0644 "../etc/systemd/system/boot.mount" "$pkgdir/etc/systemd/system/boot.mount"
     install -Dm0644 "../etc/systemd/system/boot.automount" "$pkgdir/etc/systemd/system/boot.automount"
     install -Dm0644 "../etc/systemd/system/windows-Users-ccham.service" "$pkgdir/etc/systemd/system/windows-Users-ccham.service"
+    install -Dm0644 "../etc/systemd/system/wake_from_sleep.service" "$pkgdir/etc/systemd/system/wake_from_sleep.service"
     install -Dm0644 "../etc/hosts" "$pkgdir/etc/hosts"
     install -Dm0755 "../etc/acpi/actions/lid.sh" "$pkgdir/etc/acpi/actions/lid.sh"
     install -Dm0644 "../etc/acpi/events/lid" "$pkgdir/etc/acpi/events/lid"
@@ -50,7 +51,9 @@ package() {
     install -Dm0644 "../etc/mkinitcpio.conf" "$pkgdir/etc/mkinitcpio.conf"
     install -Dm0644 "../etc/iwd/main.conf" "$pkgdir/etc/iwd/main.conf"
     install -Dm0644 "../etc/plymouth/plymouthd.conf" "$pkgdir/etc/plymouth/plymouthd.conf"
+    install -Dm0644 "../etc/systemd/resolved.conf" "$pkgdir/etc/systemd/resolved.conf"
     install -Dm0644 "../boot/loader/loader.conf" "$pkgdir/boot/loader/loader.conf"
     install -Dm0755 "../usr/bin/share_wifi_to_ethernet" "$pkgdir/usr/bin/share_wifi_to_ethernet"
+    install -Dm0644 "../usr/share/wayland-sessions/sway-custom.desktop" "$pkgdir/usr/share/wayland-sessions/sway-custom.desktop"
 }
 md5sums=('d5f0a1c72b090fce5810a42f78922268')
