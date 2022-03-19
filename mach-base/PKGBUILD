@@ -1,7 +1,7 @@
 # Maintainer: Chris Chamberlain <chris@chamberlain.id.au>
 pkgname=mach-base
-pkgver=0.11
-pkgrel=1
+pkgver=0.12
+pkgrel=2
 
 pkgdesc='base system configuration'
 arch=('any')
@@ -20,6 +20,7 @@ package() {
     install -Dm0600 "../etc/sudoers.d/wheel" "$pkgdir"/etc/sudoers.d/wheel
     # fix permissions errors
     chmod 750 "$pkgdir/etc/sudoers.d"
+    install -Dm0644 "../etc/pacman.conf" "$pkgdir/etc/pacman.conf"
     install -Dm0644 "../etc/locale.conf" "$pkgdir/etc/locale.conf"
     install -Dm0644 "../etc/locale.gen" "$pkgdir/etc/locale.gen"
     install -Dm0644 "../etc/nsswitch.conf" "$pkgdir/etc/nsswitch.conf"

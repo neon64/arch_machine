@@ -99,6 +99,7 @@
 #bs_BA.UTF-8 UTF-8  
 #bs_BA ISO-8859-2  
 #byn_ER UTF-8  
+#C.UTF-8 UTF-8  
 #ca_AD.UTF-8 UTF-8  
 #ca_AD ISO-8859-15  
 #ca_ES.UTF-8 UTF-8  
@@ -111,6 +112,7 @@
 #ca_IT ISO-8859-15  
 #ce_RU UTF-8  
 #chr_US UTF-8  
+#ckb_IQ UTF-8  
 #cmn_TW UTF-8  
 #crh_UA UTF-8  
 #cs_CZ.UTF-8 UTF-8  
@@ -148,7 +150,7 @@
 #el_CY.UTF-8 UTF-8  
 #el_CY ISO-8859-7  
 #en_AG UTF-8  
-en_AU.UTF-8 UTF-8  
+#en_AU.UTF-8 UTF-8  
 #en_AU ISO-8859-1  
 #en_BW.UTF-8 UTF-8  
 #en_BW ISO-8859-1  
@@ -173,7 +175,7 @@ en_AU.UTF-8 UTF-8
 #en_SC.UTF-8 UTF-8  
 #en_SG.UTF-8 UTF-8  
 #en_SG ISO-8859-1  
-en_US.UTF-8 UTF-8  
+#en_US.UTF-8 UTF-8  
 #en_US ISO-8859-1  
 #en_ZA.UTF-8 UTF-8  
 #en_ZA ISO-8859-1  
@@ -347,6 +349,7 @@ en_US.UTF-8 UTF-8
 #ml_IN UTF-8  
 #mn_MN UTF-8  
 #mni_IN UTF-8  
+#mnw_MM UTF-8  
 #mr_IN UTF-8  
 #ms_MY.UTF-8 UTF-8  
 #ms_MY ISO-8859-1  
