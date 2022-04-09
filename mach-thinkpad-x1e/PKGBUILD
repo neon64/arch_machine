@@ -1,6 +1,6 @@
 # Maintainer: Chris Chamberlain <chris@chamberlain.id.au>
 pkgname=mach-thinkpad-x1e
-pkgver=0.3.0
+pkgver=0.4.1
 pkgrel=1
 
 pkgdesc='personal system configuration for Lenovo Thinkpad X1 Extreme'
@@ -16,7 +16,6 @@ depends=(
     'acpi_call' # ThinkPad battery functions
     'x86_energy_perf_policy' # set power vs. performance policy
     'plymouth' # bootsplash
-    # 'plymouth-theme-minimal-dark-bgrt-git' bootsplash theme
     'systemd' # for systemd-boot
     'systemd-boot-pacman-hook' # auto update systemd boot
     'libva-intel-driver' # VA-API hardware video acceleration
